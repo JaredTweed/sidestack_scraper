@@ -1,7 +1,7 @@
 ## Accessing data
 All the substacks pulled from this are in `feeds.zip` which was last updated on October 30th, 2025.
 
-## Running it
+## Pulling updated data
 Run this to get all the data (~13 hrs):
 ```
 python scraper.py   --sidestack-directory-base https://sidestack.io/directory/all   --max-workers 96    --output feeds.json
@@ -11,6 +11,10 @@ Run this to test it:
 ```
 python scraper.py   --sidestack-directory-base https://sidestack.io/directory/all   --max-workers 96    --output test_feeds.json  --dry-limit 20
 ```
+
+## Parsing
+Once `feeds.json` is in the root folder, you can parse it by running `python map_feeds.py --min-subscribers 1000` and that will create `feeds_mapped.json`.
+
 ## How it works
 The code iterates through all of these:
 ```
