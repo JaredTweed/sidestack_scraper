@@ -126,6 +126,19 @@ UA = (
     "(KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36"
 )
 
+def fmt_eta(seconds: float) -> str:
+    """Human-friendly ETA: days, hours, minutes with 1 decimal; seconds integer."""
+    if seconds is None or seconds != seconds:  # NaN guard
+        return "—"
+    if seconds >= 48 * 3600:
+        return f"{seconds / 86400:.1f}d"
+    if seconds >= 2 * 3600:
+        return f"{seconds / 3600:.1f}h"
+    if seconds >= 120:
+        return f"{seconds / 60:.1f}m"
+    return f"{max(0, int(round(seconds)))}s"
+
+
 # --- Requests session with retries ------------------------------------------------
 
 def make_session() -> requests.Session:
@@ -527,7 +540,7 @@ def main():
             rate = done_count / max(1e-6, (time.time() - start))
             remaining = len(buckets) - done_count
             eta = remaining / rate if rate > 0 else 0
-            log(f"[crawl buckets] {done_count}/{len(buckets)} ({rate:.2f}/s) ETA {eta:.1f}s", args.verbose)
+            log(f"[crawl buckets] {done_count}/{len(buckets)} ({rate:.2f}/s) ETA {fmt_eta(eta)}", args.verbose)
 
     all_detail_urls = sorted(set(all_detail_urls))
     print(f"[sidestack-dir] collected {len(all_detail_urls)} detail pages", flush=True)
@@ -552,7 +565,7 @@ def main():
                 rate = processed / max(1e-6, (time.time() - t0))
                 remaining = len(all_detail_urls) - processed
                 eta = remaining / rate if rate > 0 else 0
-                print(f"[detail pages] {processed}/{len(all_detail_urls)} ({rate:.2f}/s) ETA {eta:.1f}s", flush=True)
+                log(f"[detail pages] {processed}/{len(all_detail_urls)} ({rate:.2f}/s) ETA {fmt_eta(eta)}", True)
 
     # Write JSON and exit
     serialize_and_write(results, args.output)
