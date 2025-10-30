@@ -13,7 +13,13 @@ python scraper.py   --sidestack-directory-base https://sidestack.io/directory/al
 ```
 
 ## Parsing
-Once `feeds.json` is in the root folder, you can parse it by running `python map_feeds.py --min-subscribers 1000` and that will create `feeds_mapped.json`.
+Once `feeds.json` is in the root folder, you can parse it by running any one of the following lines:
+```
+python map_feeds.py --min-subscribers 1000
+python map_feeds.py --min-subscribers 2.5k
+python map_feeds.py --min-subscribers 1m
+```
+and that will create `feeds_mapped.json`.
 
 ## How it works
 The code iterates through all of these:
