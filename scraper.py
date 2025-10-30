@@ -1,57 +1,48 @@
 #!/usr/bin/env python3
 """
-Sidestack Substack directory scraper
-------------------------------------
+Sidestack Substack directory scraper (v4)
+-----------------------------------------
 
 Scrapes https://sidestack.io/directory/all/<LETTER> pages to collect Substack
-detail pages, then resolves each to the canonical Substack site URL and feed URL,
-and extracts Sidestack-side "Substack details" key/value pairs (e.g., Author,
-First Posted, Free Subscribers, Paid Subscribers, Country, Language).
+detail pages, then resolves each to the canonical Substack site URL and feed URL.
 
-Only the following CLI flags are supported (as requested):
+Also extracts:
+- Single entry category from the breadcrumb (not the global site category list)
+- "Substack details" dt/dd pairs (Author, First Posted, Free/Paid Subscribers, Country, Language)
+- Page metadata: <title>, <meta name="description">, <meta property="og:image">
+- JSON-LD details when present: headline, description, author info, datePublished, inLanguage
+
+CLI flags (as requested):
   --sidestack-directory-base  Base directory URL (default: https://sidestack.io/directory/all)
   --max-workers               Max threads for crawling (default: 32)
   --verbose                   Chatty progress logging
   --output                    Output JSON file (default: feeds.json)
-  --sample-first N            Process only the first N detail pages, then write JSON and exit
-
-Design goals:
-- Robust extraction of substack site from detail pages:
-    1) Prefer any <a href="https://*.substack.com/..."> found on page (excluding substackcdn / my.substack).
-    2) If none, derive from slug in detail URL: https://{slug}.substack.com
-- Feed URL resolution:
-    - Try "/feed", then "/feed.xml" (some stacks use explicit .xml)
-    - Use GET (not HEAD), allow redirects, set a browsery UA
-    - If 403/429/timeouts, keep the candidate feed but mark status="UNVERIFIED"
-- Rate limiting & retries:
-    - Global requests.Session with urllib3 Retry
-    - Simple per-host pacing (100ms between requests to the same netloc)
-- Threaded crawling using concurrent.futures (no extra deps)
-- Sidestack details & metadata:
-    - Parse <dt>/<dd> pairs in the "Substack details" section (generic, order-agnostic).
-    - Parse <title>, <meta name="description">, <meta property="og:image">.
-    - Parse breadcrumb/topic chips like /directory/category/<slug> as categories.
+  --dry-limit                 Stop after processing first N detail pages, cancel remaining work,
+                              write JSON, and exit cleanly
 
 Output schema (list of dicts):
 {
   "slug": "a16znews",
   "detail_url": "https://sidestack.io/directory/substack/a16znews",
+  "category": "Technology",
+
   "sidestack": {
-    "page_title": "...",
-    "meta_description": "...",
-    "og_image": "...",
-    "categories": ["Economics", "Markets"]
+    "page_title": "…",
+    "meta_description": "…",
+    "og_image": "…"
   },
+
   "substack": {
     "website": "https://a16znews.substack.com",
     "feed_url": "https://a16znews.substack.com/feed",
     "alternate_feed_url": "https://a16znews.substack.com/feed.xml",
     "feed_verified_url": "https://a16znews.substack.com/feed" | null,
+
     "details": {
-      "headline": "...",
-      "description": "...",
-      "author_name": "...",
-      "author_image": "...",
+      "headline": "…",
+      "description": "…",
+      "author_name": "…",
+      "author_image": "…",
       "date_published": "YYYY-MM-DD",
       "in_language": "en",
       "first_posted": "Month YYYY",
@@ -61,8 +52,9 @@ Output schema (list of dicts):
       "language_ui": "English"
     }
   },
+
   "status": "OK" | "UNVERIFIED" | "FAIL",
-  "reason": "optional text (for FAIL/UNVERIFIED)"
+  "reason": "optional (for FAIL/UNVERIFIED)"
 }
 """
 from __future__ import annotations
@@ -87,7 +79,7 @@ from urllib3.util.retry import Retry
 
 
 DEFAULT_BASE = "https://sidestack.io/directory/all"
-BUCKETS = ["%230-9"] + [chr(c) for c in range(ord("A"), ord("Z")+1)]
+BUCKETS = ["%230-9"] + [chr(c) for c in range(ord("A"), ord("Z") + 1)]
 
 # Match "https://<something>.substack.com[/optional-path]" but exclude substackcdn/my.substack
 SUBSTACK_SITE_RE = re.compile(
@@ -98,12 +90,21 @@ SUBSTACK_SITE_RE = re.compile(
 # Relative links to detail pages
 DETAIL_HREF_RE = re.compile(r'href="(/directory/substack/[^"]+)"', re.IGNORECASE)
 
-# <dt>..<dd> pairs in the "Substack details" card
-DT_DD_RE = re.compile(
-    r"<dt[^>]*>(.*?)</dt>\s*(?:<hr[^>]*>\s*)?<dd[^>]*>(.*?)</dd>",
-    re.IGNORECASE | re.DOTALL,
+# Breadcrumb category (single “entry category”)
+BREADCRUMB_CATEGORY_RE = re.compile(
+    r'<a[^>]+href="/directory/category/[^"]+"[^>]*>\s*<span[^>]*property="name"[^>]*>\s*([^<]+?)\s*</span>',
+    re.IGNORECASE
 )
 
+# "Substack details" definition list block and pairs
+DETAILS_BLOCK_RE = re.compile(
+    r'<h2[^>]*>\s*Substack details\s*</h2>.*?<dl[^>]*>(.*?)</dl>',
+    re.IGNORECASE | re.DOTALL
+)
+DT_RE = re.compile(r'<dt[^>]*>\s*([^<]+?)\s*</dt>', re.IGNORECASE | re.DOTALL)
+DD_RE = re.compile(r'<dd[^>]*>\s*([^<]+?)\s*</dd>', re.IGNORECASE | re.DOTALL)
+
+# Page metadata
 TITLE_RE = re.compile(r"<title[^>]*>(.*?)</title>", re.IGNORECASE | re.DOTALL)
 META_DESC_RE = re.compile(
     r'<meta\s+(?:name=["\']description["\']|property=["\']og:description["\'])\s+content=["\'](.*?)["\']',
@@ -111,11 +112,6 @@ META_DESC_RE = re.compile(
 )
 OG_IMAGE_RE = re.compile(
     r'<meta\s+property=["\']og:image["\']\s+content=["\'](.*?)["\']',
-    re.IGNORECASE,
-)
-# category chips/links like: <a href="/directory/category/economics">Economics</a>
-CATEGORY_RE = re.compile(
-    r'href="/directory/category/[^"]+"\s*[^>]*>([^<]+)</a>',
     re.IGNORECASE,
 )
 
@@ -129,6 +125,19 @@ UA = (
     "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 "
     "(KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36"
 )
+
+def fmt_eta(seconds: float) -> str:
+    """Human-friendly ETA: days, hours, minutes with 1 decimal; seconds integer."""
+    if seconds is None or seconds != seconds:  # NaN guard
+        return "—"
+    if seconds >= 48 * 3600:
+        return f"{seconds / 86400:.1f}d"
+    if seconds >= 2 * 3600:
+        return f"{seconds / 3600:.1f}h"
+    if seconds >= 120:
+        return f"{seconds / 60:.1f}m"
+    return f"{max(0, int(round(seconds)))}s"
+
 
 # --- Requests session with retries ------------------------------------------------
 
@@ -149,7 +158,7 @@ def make_session() -> requests.Session:
 
 SESSION = make_session()
 
-# simple per-host pacing (100ms between calls per host) to reduce 403/timeout rates
+# Simple per-host pacing (100ms between calls per host) to reduce 403/timeout rates
 _host_lock = defaultdict(threading.Lock)
 _host_last = defaultdict(float)
 _PACE_SECONDS = 0.10
@@ -182,7 +191,6 @@ def clean_text(s: str) -> str:
     return normalize_ws(html.unescape(strip_tags(s or "")).strip())
 
 def strip_utm(url: str) -> str:
-    """Remove common tracking params but keep the rest of the querystring."""
     p = urlparse(url)
     if not p.query:
         return url
@@ -190,7 +198,6 @@ def strip_utm(url: str) -> str:
     return urlunparse(p._replace(query=urlencode(q)))
 
 def canonicalize_site(url: str) -> str:
-    """Ensure scheme+host are lowercased, drop fragments, strip utm params, and trim trailing slash."""
     url = strip_utm(url)
     p = urlparse(url)
     scheme = p.scheme.lower() or "https"
@@ -230,7 +237,6 @@ def parse_count_like(s: str) -> Optional[int]:
     return int(round(val * mult))
 
 def best_substack_on_page(html_text: str) -> Optional[str]:
-    """Return the first plausible substack site URL found in the document, excluding substackcdn/my.substack."""
     text = html.unescape(html_text)
     for m in SUBSTACK_SITE_RE.finditer(text):
         candidate = m.group(0)
@@ -246,7 +252,6 @@ def derive_site_from_slug(detail_url: str) -> str:
     return f"https://{slug_from_detail(detail_url)}.substack.com"
 
 def choose_feed_url(site_url: str) -> List[str]:
-    # Try common patterns in order
     return [f"{site_url}/feed", f"{site_url}/feed.xml"]
 
 def verify_feed(url: str) -> Tuple[bool, str]:
@@ -261,6 +266,31 @@ def verify_feed(url: str) -> Tuple[bool, str]:
     except requests.RequestException as e:
         return False, f"REQ_ERR {type(e).__name__}: {e}"
 
+# --- Page parsing helpers ---------------------------------------------------------
+
+def extract_category(html_text: str) -> Optional[str]:
+    text = html.unescape(html_text)
+    m = BREADCRUMB_CATEGORY_RE.search(text)
+    if m:
+        return re.sub(r'\s+', ' ', m.group(1)).strip()
+    return None
+
+def extract_substack_details_box(html_text: str) -> Dict[str, str]:
+    out: Dict[str, str] = {}
+    text = html.unescape(html_text)
+    block = DETAILS_BLOCK_RE.search(text)
+    if not block:
+        return out
+    dl_html = block.group(1)
+    labels = DT_RE.findall(dl_html)
+    values = DD_RE.findall(dl_html)
+    for i in range(min(len(labels), len(values))):
+        label = re.sub(r'\s+', ' ', html.unescape(labels[i])).strip(" \u00a0-:").strip()
+        value = re.sub(r'\s+', ' ', html.unescape(values[i])).strip()
+        if label:
+            out[label] = value
+    return out
+
 def parse_sidestack_meta(html_text: str) -> Dict[str, Optional[str]]:
     title = None
     m = TITLE_RE.search(html_text)
@@ -274,37 +304,18 @@ def parse_sidestack_meta(html_text: str) -> Dict[str, Optional[str]]:
     m = OG_IMAGE_RE.search(html_text)
     if m:
         og = m.group(1).strip()
-    cats = [clean_text(x) for x in CATEGORY_RE.findall(html_text)]
-    cats = [c for c in cats if c]
     return {
         "page_title": title,
         "meta_description": desc,
         "og_image": og,
-        "categories": cats or None,
     }
-
-def parse_dt_dd_pairs(html_text: str) -> Dict[str, str]:
-    """
-    Extract all <dt>Label</dt><dd>Value</dd> pairs (order-agnostic).
-    Returns dict with normalized labels as keys (lowercase words joined by underscores).
-    """
-    pairs = {}
-    for m in DT_DD_RE.finditer(html_text):
-        raw_dt, raw_dd = m.group(1), m.group(2)
-        key = clean_text(raw_dt)
-        val = clean_text(raw_dd)
-        if not key:
-            continue
-        norm = re.sub(r"[^a-z0-9]+", "_", key.lower()).strip("_")
-        if norm:
-            pairs[norm] = val
-    return pairs
 
 def parse_jsonld_first(html_text: str) -> Optional[dict]:
     m = JSONLD_RE.search(html_text)
     if not m:
         return None
     block = m.group(1).strip()
+    # JSON-LD sometimes contains multiple objects or comments; try strict first
     try:
         return json.loads(block)
     except Exception:
@@ -316,7 +327,10 @@ def parse_jsonld_first(html_text: str) -> Optional[dict]:
             return None
     return None
 
-def merge_details(dtdd: Dict[str, str], jsonld: Optional[dict]) -> Dict[str, Optional[object]]:
+def merge_details(dtdd_human: Dict[str, str], jsonld: Optional[dict]) -> Dict[str, Optional[object]]:
+    """
+    Map both the human dt/dd card and JSON-LD into a single normalized details dict.
+    """
     out: Dict[str, Optional[object]] = {
         "headline": None,
         "description": None,
@@ -331,21 +345,24 @@ def merge_details(dtdd: Dict[str, str], jsonld: Optional[dict]) -> Dict[str, Opt
         "language_ui": None,
     }
 
-    # From dt/dd
-    if "author" in dtdd:
-        out["author_name"] = dtdd.get("author")
-    if "first_posted" in dtdd:
-        out["first_posted"] = dtdd.get("first_posted")
-    if "free_subscribers" in dtdd:
-        out["free_subscribers_count"] = parse_count_like(dtdd.get("free_subscribers", ""))
-    if "paid_subscribers" in dtdd:
-        out["paid_subscribers_count"] = parse_count_like(dtdd.get("paid_subscribers", ""))
-    if "country" in dtdd:
-        out["country"] = dtdd.get("country")
-    if "language" in dtdd:
-        out["language_ui"] = dtdd.get("language")
+    # Human card (dt/dd)
+    # Normalize keys (case-insensitive match on known labels)
+    for k, v in dtdd_human.items():
+        kl = k.strip().lower()
+        if kl == "author":
+            out["author_name"] = v
+        elif kl == "first posted":
+            out["first_posted"] = v
+        elif kl == "free subscribers":
+            out["free_subscribers_count"] = parse_count_like(v)
+        elif kl == "paid subscribers":
+            out["paid_subscribers_count"] = parse_count_like(v)
+        elif kl == "country":
+            out["country"] = v
+        elif kl == "language":
+            out["language_ui"] = v
 
-    # From JSON-LD
+    # JSON-LD (if present)
     if jsonld:
         out["headline"] = jsonld.get("headline") or out["headline"]
         out["description"] = jsonld.get("description") or out["description"]
@@ -373,6 +390,7 @@ def merge_details(dtdd: Dict[str, str], jsonld: Optional[dict]) -> Dict[str, Opt
             elif isinstance(img, dict):
                 out["author_image"] = img.get("url") or out["author_image"]
 
+    # Clean empty strings to None
     for k, v in list(out.items()):
         if isinstance(v, str) and not v.strip():
             out[k] = None
@@ -384,6 +402,7 @@ def merge_details(dtdd: Dict[str, str], jsonld: Optional[dict]) -> Dict[str, Opt
 class DetailResult:
     slug: str
     detail_url: str
+    category: Optional[str]
     sidestack_meta: Dict[str, Optional[str]]
     substack_site: Optional[str] = None
     feed_url: Optional[str] = None
@@ -394,7 +413,6 @@ class DetailResult:
     reason: Optional[str] = None
 
 def scrape_bucket(bucket_url: str, verbose: bool=False) -> List[str]:
-    """Return list of absolute detail-page URLs under this letter bucket."""
     try:
         resp = _paced_get(bucket_url)
         html_text = resp.text
@@ -414,12 +432,13 @@ def process_detail(detail_url: str, verbose: bool=False) -> DetailResult:
         text = r.text
     except requests.RequestException as e:
         return DetailResult(
-            slug=slug, detail_url=detail_url, sidestack_meta={}, status="FAIL",
+            slug=slug, detail_url=detail_url, category=None, sidestack_meta={}, status="FAIL",
             reason=f"REQ_ERR {e}"
         )
 
+    category = extract_category(text)
     sidemeta = parse_sidestack_meta(text)
-    dtdd = parse_dt_dd_pairs(text)
+    dtdd = extract_substack_details_box(text)
     jsonld = parse_jsonld_first(text)
     details = merge_details(dtdd, jsonld)
 
@@ -452,27 +471,30 @@ def process_detail(detail_url: str, verbose: bool=False) -> DetailResult:
     return DetailResult(
         slug=slug,
         detail_url=detail_url,
+        category=category,
         sidestack_meta=sidemeta,
         substack_site=site,
         feed_url=chosen,
         feed_alt_url=alt,
         feed_verified_url=verified,
-        substack_details=details,
+        substack_details=details or None,
         status=status,
         reason=reason,
     )
 
-def serialize_and_write(results: List[DetailResult], out_path: str, verbose: bool):
+def serialize_and_write(results: List[DetailResult], out_path: str):
     out = [
         {
             "slug": r.slug,
             "detail_url": r.detail_url,
+            "category": r.category,  # single category string from breadcrumb
+
             "sidestack": {
-                "page_title": r.sidestack_meta.get("page_title"),
-                "meta_description": r.sidestack_meta.get("meta_description"),
-                "og_image": r.sidestack_meta.get("og_image"),
-                "categories": r.sidestack_meta.get("categories"),
+                "page_title": r.sidestack_meta.get("page_title") if r.sidestack_meta else None,
+                "meta_description": r.sidestack_meta.get("meta_description") if r.sidestack_meta else None,
+                "og_image": r.sidestack_meta.get("og_image") if r.sidestack_meta else None,
             },
+
             "substack": {
                 "website": r.substack_site,
                 "feed_url": r.feed_url,
@@ -480,6 +502,7 @@ def serialize_and_write(results: List[DetailResult], out_path: str, verbose: boo
                 "feed_verified_url": r.feed_verified_url,
                 "details": r.substack_details,
             },
+
             "status": r.status,
             **({"reason": r.reason} if r.reason else {}),
         }
@@ -489,7 +512,7 @@ def serialize_and_write(results: List[DetailResult], out_path: str, verbose: boo
     ok = sum(1 for r in results if r.status == "OK")
     unv = sum(1 for r in results if r.status == "UNVERIFIED")
     fail = sum(1 for r in results if r.status == "FAIL")
-    log(f"[summary] total: {len(results)}  OK: {ok}  UNVERIFIED: {unv}  FAIL: {fail}", True)
+    print(f"[summary] total: {len(results)}  OK: {ok}  UNVERIFIED: {unv}  FAIL: {fail}", flush=True)
 
 def main():
     ap = argparse.ArgumentParser()
@@ -497,8 +520,8 @@ def main():
     ap.add_argument("--max-workers", type=int, default=32)
     ap.add_argument("--verbose", action="store_true")
     ap.add_argument("--output", default="feeds.json")
-    ap.add_argument("--sample-first", type=int, default=None,
-                    help="Process only the first N detail pages, then write JSON and exit")
+    ap.add_argument("--dry-limit", type=int, default=None,
+                    help="Process only the first N detail pages, write JSON, and exit.")
     args = ap.parse_args()
 
     base = args.sidestack_directory_base.rstrip("/")
@@ -507,7 +530,7 @@ def main():
     # Crawl buckets
     start = time.time()
     all_detail_urls: List[str] = []
-    with cf.ThreadPoolExecutor(max_workers=min(max(1, args.max_workers//4), 32)) as ex:
+    with cf.ThreadPoolExecutor(max_workers=min(max(1, args.max_workers // 4), 32)) as ex:
         futs = {ex.submit(scrape_bucket, u, args.verbose): u for u in buckets}
         done_count = 0
         for fut in cf.as_completed(futs):
@@ -517,39 +540,43 @@ def main():
             rate = done_count / max(1e-6, (time.time() - start))
             remaining = len(buckets) - done_count
             eta = remaining / rate if rate > 0 else 0
-            log(f"[crawl buckets] {done_count}/{len(buckets)} ({rate:.2f}/s) ETA {eta:.1f}s", args.verbose)
+            log(f"[crawl buckets] {done_count}/{len(buckets)} ({rate:.2f}/s) ETA {fmt_eta(eta)}", args.verbose)
 
     all_detail_urls = sorted(set(all_detail_urls))
-    log(f"[sidestack-dir] collected {len(all_detail_urls)} detail pages", True)
+    print(f"[sidestack-dir] collected {len(all_detail_urls)} detail pages", flush=True)
 
-    # Sampling mode: limit to first N
-    if args.sample_first is not None and args.sample_first > 0:
+    # If dry-limit is set, only submit the first N detail pages to the pool.
+    if args.dry_limit is not None and args.dry_limit > 0:
         original = len(all_detail_urls)
-        all_detail_urls = all_detail_urls[:args.sample_first]
-        log(f"[sample] --sample-first={args.sample_first} enabled "
-            f"(processing {len(all_detail_urls)}/{original} detail pages)", True)
+        all_detail_urls = all_detail_urls[:args.dry_limit]
+        print(f"[dry-limit] only processing first {len(all_detail_urls)} of {original} detail pages.", flush=True)
 
-    # Process details
+    # Process details (no cancellation necessary because we submit only N tasks)
     results: List[DetailResult] = []
     t0 = time.time()
     with cf.ThreadPoolExecutor(max_workers=args.max_workers) as ex:
-        futs = {ex.submit(process_detail, u, args.verbose): u for u in all_detail_urls}
+        futs = [ex.submit(process_detail, u, args.verbose) for u in all_detail_urls]
         processed = 0
         for fut in cf.as_completed(futs):
             res: DetailResult = fut.result()
             results.append(res)
             processed += 1
-            if processed % 25 == 0 or (args.sample_first and processed == len(all_detail_urls)):
+            if processed % 25 == 0 or processed == len(all_detail_urls):
                 rate = processed / max(1e-6, (time.time() - t0))
                 remaining = len(all_detail_urls) - processed
                 eta = remaining / rate if rate > 0 else 0
-                log(f"[detail pages] {processed}/{len(all_detail_urls)} ({rate:.2f}/s) ETA {eta:.1f}s", True)
+                log(f"[detail pages] {processed}/{len(all_detail_urls)} ({rate:.2f}/s) ETA {fmt_eta(eta)}", True)
 
-    # Serialize & done
-    serialize_and_write(results, args.output, True)
+    # Write JSON and exit
+    serialize_and_write(results, args.output)
+
 
 if __name__ == "__main__":
     try:
         main()
     except KeyboardInterrupt:
+        try:
+            SESSION.close()
+        except Exception:
+            pass
         sys.exit(130)
