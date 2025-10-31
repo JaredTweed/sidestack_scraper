@@ -61,30 +61,57 @@ def map_item(item: Dict[str, Any]) -> Dict[str, str]:
         "total_subscribers": total_subscribers,
     }, total_subs_val or 0
 
+def format_total_subscribers(value: Optional[Any]) -> str:
+    if value is None:
+        return ""
+    if isinstance(value, (int, float)):
+        return str(int(value))
+    value_str = str(value).strip()
+    if not value_str:
+        return ""
+    try:
+        return str(int(float(value_str)))
+    except ValueError:
+        return value_str
+
+
 def main(argv: List[str]) -> int:
     in_path = Path("feeds.json")
     out_path = Path("feeds_mapped.json")
     min_subscribers = 0
+    merge_non_substack = False
+    merge_other_substack = False
 
-    args = argv[1:]
-    # Simple arg parsing
-    if "--min-subscribers" in args:
-        idx = args.index("--min-subscribers")
-        try:
-            min_subscribers = int(args[idx + 1])
-        except (IndexError, ValueError):
-            raise SystemExit("Error: --min-subscribers flag requires an integer value.")
-        del args[idx:idx + 2]
+    raw_args = argv[1:]
+    positional: List[str] = []
+    idx = 0
+    while idx < len(raw_args):
+        arg = raw_args[idx]
+        if arg == "--min-subscribers":
+            try:
+                min_subscribers = int(raw_args[idx + 1])
+            except (IndexError, ValueError):
+                raise SystemExit("Error: --min-subscribers flag requires an integer value.")
+            idx += 2
+        elif arg == "--merge-non-substack-feeds":
+            merge_non_substack = True
+            idx += 1
+        elif arg == "--merge-other-substack-feeds":
+            merge_other_substack = True
+            idx += 1
+        else:
+            positional.append(arg)
+            idx += 1
 
-    if len(args) >= 1:
-        in_path = Path(args[0])
-    if len(args) >= 2:
-        out_path = Path(args[1])
+    if len(positional) >= 1:
+        in_path = Path(positional[0])
+    if len(positional) >= 2:
+        out_path = Path(positional[1])
 
     data = read_json(in_path)
     if not isinstance(data, list):
         raise SystemExit("Input JSON must be a list of items.")
-    
+
     out = []
     for item in data:
         if not isinstance(item, dict):
@@ -97,7 +124,44 @@ def main(argv: List[str]) -> int:
         if not mapped["feed_url"]:
             continue
         out.append(mapped)
-    
+
+    seen_urls = {entry["feed_url"] for entry in out if entry.get("feed_url")}
+
+    def append_extra_feed(title: Any, feed_url: Any, subscribers: Optional[Any] = None) -> None:
+        url = to_str(feed_url).strip()
+        if not url or url in seen_urls:
+            return
+        entry = {
+            "headline": to_str(title),
+            "author_name": "",
+            "language": "",
+            "feed_url": url,
+            "category": "",
+            "total_subscribers": format_total_subscribers(subscribers),
+        }
+        out.append(entry)
+        seen_urls.add(url)
+
+    if merge_non_substack:
+        extra_path = Path("non_substack_feeds.json")
+        extra_data = read_json(extra_path)
+        if not isinstance(extra_data, list):
+            raise SystemExit(f"Error: {extra_path} must contain a list of feeds.")
+        for item in extra_data:
+            if not isinstance(item, dict):
+                continue
+            append_extra_feed(item.get("title") or item.get("headline"), item.get("feed_url"))
+
+    if merge_other_substack:
+        extra_path = Path("other_substack_feeds.json")
+        extra_data = read_json(extra_path)
+        if not isinstance(extra_data, list):
+            raise SystemExit(f"Error: {extra_path} must contain a list of feeds.")
+        for item in extra_data:
+            if not isinstance(item, dict):
+                continue
+            append_extra_feed(item.get("title") or item.get("headline"), item.get("feed_url"), item.get("subscribers"))
+
     with out_path.open("w", encoding="utf-8") as f:
         json.dump(out, f, ensure_ascii=False, indent=2)
     print(f"Wrote {len(out)} items to {out_path} (min_subscribers={min_subscribers})")
