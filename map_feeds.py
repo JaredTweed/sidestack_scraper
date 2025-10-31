@@ -79,8 +79,7 @@ def main(argv: List[str]) -> int:
     in_path = Path("feeds.json")
     out_path = Path("feeds_mapped.json")
     min_subscribers = 0
-    merge_non_substack = False
-    merge_other_substack = False
+    merge_other_feeds = False
 
     raw_args = argv[1:]
     positional: List[str] = []
@@ -93,11 +92,8 @@ def main(argv: List[str]) -> int:
             except (IndexError, ValueError):
                 raise SystemExit("Error: --min-subscribers flag requires an integer value.")
             idx += 2
-        elif arg == "--merge-non-substack-feeds":
-            merge_non_substack = True
-            idx += 1
-        elif arg == "--merge-other-substack-feeds":
-            merge_other_substack = True
+        elif arg == "--merge-other-feeds":
+            merge_other_feeds = True
             idx += 1
         else:
             positional.append(arg)
@@ -127,40 +123,30 @@ def main(argv: List[str]) -> int:
 
     seen_urls = {entry["feed_url"] for entry in out if entry.get("feed_url")}
 
-    def append_extra_feed(title: Any, feed_url: Any, subscribers: Optional[Any] = None) -> None:
-        url = to_str(feed_url).strip()
+    def append_extra_feed(feed: Dict[str, Any]) -> None:
+        url = to_str(feed.get("feed_url")).strip()
         if not url or url in seen_urls:
             return
         entry = {
-            "headline": to_str(title),
-            "author_name": "",
-            "language": "",
+            "headline": to_str(feed.get("headline") or feed.get("title")),
+            "author_name": to_str(feed.get("author_name")),
+            "language": to_str(feed.get("language")),
             "feed_url": url,
-            "category": "",
-            "total_subscribers": format_total_subscribers(subscribers),
+            "category": to_str(feed.get("category")),
+            "total_subscribers": format_total_subscribers(feed.get("total_subscribers") or feed.get("subscribers")),
         }
         out.append(entry)
         seen_urls.add(url)
 
-    if merge_non_substack:
-        extra_path = Path("non_substack_feeds.json")
+    if merge_other_feeds:
+        extra_path = Path("other_feeds.json")
         extra_data = read_json(extra_path)
         if not isinstance(extra_data, list):
             raise SystemExit(f"Error: {extra_path} must contain a list of feeds.")
         for item in extra_data:
             if not isinstance(item, dict):
                 continue
-            append_extra_feed(item.get("title") or item.get("headline"), item.get("feed_url"))
-
-    if merge_other_substack:
-        extra_path = Path("other_substack_feeds.json")
-        extra_data = read_json(extra_path)
-        if not isinstance(extra_data, list):
-            raise SystemExit(f"Error: {extra_path} must contain a list of feeds.")
-        for item in extra_data:
-            if not isinstance(item, dict):
-                continue
-            append_extra_feed(item.get("title") or item.get("headline"), item.get("feed_url"), item.get("subscribers"))
+            append_extra_feed(item)
 
     with out_path.open("w", encoding="utf-8") as f:
         json.dump(out, f, ensure_ascii=False, indent=2)
