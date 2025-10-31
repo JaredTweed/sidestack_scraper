@@ -1,4 +1,6 @@
 ## Overview
+This repo scrapes a nearly complete list of Substack RSS feeds and corresponding details into a json (which is also saved in this repo).
+
 All the substacks pulled from this are in `feeds.zip` which was last updated on October 30th, 2025. The feeds were scraped from [sidestack.io](https://sidestack.io/).
 
 ## Pulling updated data
