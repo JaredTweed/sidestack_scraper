@@ -1,9 +1,33 @@
 [
    {
-    "headline": "Ben Thompson – Stratechery (headlines)",
-    "author_name": "",
+    "headline": "Stratechery",
+    "author_name": "Ben Thompson",
     "language": "",
     "feed_url": "https://stratechery.com/feed/",
+    "category": "",
+    "total_subscribers": ""
+  },
+  {
+    "headline": "Joel on Software",
+    "author_name": "Joel Spolsky",
+    "language": "",
+    "feed_url": "https://www.joelonsoftware.com/feed/",
+    "category": "",
+    "total_subscribers": ""
+  },
+  {
+    "headline": "Mr. Money Mustache",
+    "author_name": "",
+    "language": "",
+    "feed_url": "https://feeds.feedburner.com/mrmoneymustache",
+    "category": "",
+    "total_subscribers": ""
+  },
+  {
+    "headline": "Paul Graham",
+    "author_name": "",
+    "language": "",
+    "feed_url": "http://www.aaronsw.com/2002/feeds/pgessays.rss",
     "category": "",
     "total_subscribers": ""
   },
@@ -12,14 +36,6 @@
     "author_name": "",
     "language": "",
     "feed_url": "https://dynomight.net/feed.xml",
-    "category": "",
-    "total_subscribers": ""
-  },
-  {
-    "headline": "Overcoming Bias (Robin Hanson)",
-    "author_name": "",
-    "language": "",
-    "feed_url": "https://www.overcomingbias.com/feed",
     "category": "",
     "total_subscribers": ""
   },
@@ -404,7 +420,7 @@
     "author_name": "",
     "language": "",
     "feed_url": "https://www.phoronix.com/rss.php",
-    "category": "",
+    "category": "Technology",
     "total_subscribers": ""
   },
   {
@@ -432,11 +448,11 @@
     "total_subscribers": ""
   },
   {
-    "headline": "The Economist – Latest",
+    "headline": "The Economist",
     "author_name": "",
     "language": "",
     "feed_url": "https://www.economist.com/latest/rss.xml",
-    "category": "",
+    "category": "World Politics",
     "total_subscribers": ""
   },
   {
@@ -484,7 +500,7 @@
     "author_name": "",
     "language": "",
     "feed_url": "https://www.vox.com/rss/technology/index.xml",
-    "category": "",
+    "category": "Technology",
     "total_subscribers": ""
   },
   {
@@ -556,7 +572,7 @@
     "author_name": "",
     "language": "",
     "feed_url": "https://voxeu.org/rss.xml",
-    "category": "",
+    "category": "World Politics",
     "total_subscribers": ""
   },
   {
@@ -720,6 +736,14 @@
     "total_subscribers": ""
   },
   {
+    "headline": "xkcd Comics",
+    "author_name": "Randall Munroe",
+    "language": "",
+    "feed_url": "https://xkcd.com/rss.xml",
+    "category": "Humor",
+    "total_subscribers": ""
+  },
+  {
     "headline": "Tom's Hardware",
     "author_name": "",
     "language": "",
@@ -748,7 +772,7 @@
     "author_name": "",
     "language": "",
     "feed_url": "https://qz.com/feed",
-    "category": "",
+    "category": "News",
     "total_subscribers": ""
   },
   {
@@ -796,7 +820,7 @@
     "author_name": "",
     "language": "",
     "feed_url": "https://planet.gnome.org/rss20.xml",
-    "category": "",
+    "category": "Technology",
     "total_subscribers": ""
   },
   {

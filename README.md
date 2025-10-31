@@ -21,7 +21,7 @@ python map_feeds.py --min-subscribers 1m
 ```
 and that will create `feeds_mapped.json` which is a more compact version of `feeds.json` excluding non-"OK" status feeds. If you include the `--merge-other-feeds`, then `feeds_mapped.json` will include the feeds from `other_feeds.json` as well which includes feeds not from substack.
 
-To create the suggested feeds for Feeder, I ran `python map_feeds.py --min-subscribers 1000 --merge-other-feeds`.
+To create the suggested feeds for [Feeder](https://github.com/spacecowboy/Feeder), I ran `python map_feeds.py --min-subscribers 1000 --merge-other-feeds`.
 
 ## How it works
 The code iterates through all of these:
