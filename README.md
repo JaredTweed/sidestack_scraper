@@ -19,7 +19,7 @@ python map_feeds.py --min-subscribers 1000
 python map_feeds.py --min-subscribers 2.5k
 python map_feeds.py --min-subscribers 1m
 ```
-and that will create `feeds_mapped.json`.
+and that will create `feeds_mapped.json` which is a more compact version of `feeds.json` excluding non-"OK" status feeds. If you include the `--merge-non-substack-feeds`, then `feeds_mapped.json` will include the feeds from `non_substack_feeds.json` as well. If you include the `--merge-other-substack-feeds`, then `feeds_mapped.json` will include the feeds from `other_substack_feeds.json` as well.
 
 ## How it works
 The code iterates through all of these:
