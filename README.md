@@ -1,5 +1,5 @@
 ## Accessing data
-All the substacks pulled from this are in `feeds.zip` which was last updated on October 30th, 2025.
+All the substacks pulled from this are in `feeds.zip` which was last updated on October 30th, 2025. The feeds were scraped from [sidestack.io](https://sidestack.io/).
 
 ## Pulling updated data
 Run this to get all the data (~13 hrs):
