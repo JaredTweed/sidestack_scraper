@@ -830,21 +830,5 @@
     "feed_url": "https://thehill.com/feed/",
     "category": "",
     "total_subscribers": ""
-  },
-  {
-    "headline": "Collaborative Fund",
-    "author_name": "",
-    "language": "",
-    "feed_url": "https://collabfund.substack.com/feed",
-    "category": "",
-    "total_subscribers": "67000"
-  },
-  {
-    "headline": "Slow Boring",
-    "author_name": "Matthew Yglesias",
-    "language": "",
-    "feed_url": "https://slowboring.substack.com/feed",
-    "category": "",
-    "total_subscribers": "204000"
   }
 ]
