@@ -1,0 +1,1186 @@
+[
+  {
+    "headline": "9to5Google",
+    "author_name": "",
+    "language": "en",
+    "feed_url": "https://9to5google.com/feed/",
+    "category": "Technology",
+    "total_subscribers": ""
+  },
+  {
+    "headline": "9to5Mac",
+    "author_name": "",
+    "language": "en",
+    "feed_url": "https://9to5mac.com/feed/",
+    "category": "Technology",
+    "total_subscribers": ""
+  },
+  {
+    "headline": "A List Apart",
+    "author_name": "",
+    "language": "",
+    "feed_url": "https://alistapart.com/main/feed/",
+    "category": "",
+    "total_subscribers": ""
+  },
+  {
+    "headline": "ABC News Australia",
+    "author_name": "",
+    "language": "en",
+    "feed_url": "https://www.abc.net.au/news/feed/51120/rss.xml",
+    "category": "News",
+    "total_subscribers": ""
+  },
+  {
+    "headline": "Aeon",
+    "author_name": "",
+    "language": "en",
+    "feed_url": "https://aeon.co/feed.rss",
+    "category": "Ideas",
+    "total_subscribers": ""
+  },
+  {
+    "headline": "Airbnb Engineering & Data Science",
+    "author_name": "",
+    "language": "",
+    "feed_url": "https://medium.com/feed/airbnb-engineering",
+    "category": "",
+    "total_subscribers": ""
+  },
+  {
+    "headline": "Al Jazeera English",
+    "author_name": "",
+    "language": "en",
+    "feed_url": "https://www.aljazeera.com/xml/rss/all.xml",
+    "category": "News",
+    "total_subscribers": ""
+  },
+  {
+    "headline": "AOC Media – Analyse Opinion Critique",
+    "author_name": "",
+    "language": "fr",
+    "feed_url": "https://aoc.media/feed/",
+    "category": "World Politics",
+    "total_subscribers": ""
+  },
+  {
+    "headline": "Arch Linux News",
+    "author_name": "",
+    "language": "en",
+    "feed_url": "https://archlinux.org/feeds/news/",
+    "category": "Technology",
+    "total_subscribers": ""
+  },
+  {
+    "headline": "Ars Technica",
+    "author_name": "",
+    "language": "",
+    "feed_url": "https://arstechnica.com/feed/",
+    "category": "",
+    "total_subscribers": ""
+  },
+  {
+    "headline": "Astronomy Magazine",
+    "author_name": "",
+    "language": "en",
+    "feed_url": "https://www.astronomy.com/feed/",
+    "category": "Science",
+    "total_subscribers": ""
+  },
+  {
+    "headline": "AWS News Blog",
+    "author_name": "",
+    "language": "",
+    "feed_url": "https://aws.amazon.com/blogs/aws/feed/",
+    "category": "",
+    "total_subscribers": ""
+  },
+  {
+    "headline": "Bank of Canada – News",
+    "author_name": "",
+    "language": "en",
+    "feed_url": "https://www.bankofcanada.ca/utility/news/feed/",
+    "category": "Economics",
+    "total_subscribers": ""
+  },
+  {
+    "headline": "Bank of Canada – Press Releases",
+    "author_name": "",
+    "language": "en",
+    "feed_url": "https://www.bankofcanada.ca/content_type/press-releases/feed/",
+    "category": "Economics",
+    "total_subscribers": ""
+  },
+  {
+    "headline": "BBC News (Top Stories)",
+    "author_name": "",
+    "language": "",
+    "feed_url": "https://feeds.bbci.co.uk/news/rss.xml",
+    "category": "",
+    "total_subscribers": ""
+  },
+  {
+    "headline": "BC Gov News",
+    "author_name": "",
+    "language": "en",
+    "feed_url": "https://news.gov.bc.ca/feed",
+    "category": "Canadian Politics",
+    "total_subscribers": ""
+  },
+  {
+    "headline": "BC Gov News – Finance",
+    "author_name": "",
+    "language": "en",
+    "feed_url": "https://news.gov.bc.ca/ministries/finance/feed",
+    "category": "Canadian Politics",
+    "total_subscribers": ""
+  },
+  {
+    "headline": "BC Gov News – Health",
+    "author_name": "",
+    "language": "en",
+    "feed_url": "https://news.gov.bc.ca/ministries/health/feed",
+    "category": "Canadian Politics",
+    "total_subscribers": ""
+  },
+  {
+    "headline": "Bellingcat",
+    "author_name": "",
+    "language": "en",
+    "feed_url": "https://www.bellingcat.com/feed/",
+    "category": "Investigations",
+    "total_subscribers": ""
+  },
+  {
+    "headline": "Ben Kuhn",
+    "author_name": "",
+    "language": "",
+    "feed_url": "https://www.benkuhn.net/feed.xml",
+    "category": "",
+    "total_subscribers": ""
+  },
+  {
+    "headline": "BikePortland",
+    "author_name": "",
+    "language": "en",
+    "feed_url": "https://bikeportland.org/feed",
+    "category": "Urbanism",
+    "total_subscribers": ""
+  },
+  {
+    "headline": "Bits from Debian",
+    "author_name": "",
+    "language": "en",
+    "feed_url": "https://bits.debian.org/feeds/atom.xml",
+    "category": "Technology",
+    "total_subscribers": ""
+  },
+  {
+    "headline": "BleepingComputer",
+    "author_name": "",
+    "language": "",
+    "feed_url": "https://www.bleepingcomputer.com/feed/",
+    "category": "",
+    "total_subscribers": ""
+  },
+  {
+    "headline": "Canadaland",
+    "author_name": "",
+    "language": "en",
+    "feed_url": "https://www.canadaland.com/feed/",
+    "category": "Canadian News",
+    "total_subscribers": ""
+  },
+  {
+    "headline": "Canary Media",
+    "author_name": "",
+    "language": "en",
+    "feed_url": "https://www.canarymedia.com/rss",
+    "category": "Energy",
+    "total_subscribers": ""
+  },
+  {
+    "headline": "Chrome Releases",
+    "author_name": "",
+    "language": "",
+    "feed_url": "https://chromereleases.googleblog.com/atom.xml",
+    "category": "",
+    "total_subscribers": ""
+  },
+  {
+    "headline": "Chromium Blog",
+    "author_name": "",
+    "language": "en",
+    "feed_url": "https://blog.chromium.org/feeds/posts/default",
+    "category": "Technology",
+    "total_subscribers": ""
+  },
+  {
+    "headline": "Cicero Online",
+    "author_name": "",
+    "language": "de",
+    "feed_url": "https://www.cicero.de/rss.xml",
+    "category": "World Politics",
+    "total_subscribers": ""
+  },
+  {
+    "headline": "City Observatory",
+    "author_name": "",
+    "language": "",
+    "feed_url": "https://cityobservatory.org/feed/",
+    "category": "",
+    "total_subscribers": ""
+  },
+  {
+    "headline": "CleanTechnica",
+    "author_name": "",
+    "language": "en",
+    "feed_url": "https://cleantechnica.com/feed/",
+    "category": "Energy",
+    "total_subscribers": ""
+  },
+  {
+    "headline": "Cloudflare Blog",
+    "author_name": "",
+    "language": "",
+    "feed_url": "https://blog.cloudflare.com/rss/",
+    "category": "",
+    "total_subscribers": ""
+  },
+  {
+    "headline": "CNCF (Cloud Native Computing Foundation)",
+    "author_name": "",
+    "language": "",
+    "feed_url": "https://www.cncf.io/feed/",
+    "category": "",
+    "total_subscribers": ""
+  },
+  {
+    "headline": "CNX Software",
+    "author_name": "",
+    "language": "en",
+    "feed_url": "https://www.cnx-software.com/feed/",
+    "category": "Technology",
+    "total_subscribers": ""
+  },
+  {
+    "headline": "Dan Luu",
+    "author_name": "",
+    "language": "",
+    "feed_url": "https://danluu.com/atom.xml",
+    "category": "",
+    "total_subscribers": ""
+  },
+  {
+    "headline": "Daring Fireball (Gruber)",
+    "author_name": "",
+    "language": "",
+    "feed_url": "https://daringfireball.net/feeds/main",
+    "category": "",
+    "total_subscribers": ""
+  },
+  {
+    "headline": "Docker Blog",
+    "author_name": "",
+    "language": "",
+    "feed_url": "https://www.docker.com/blog/feed/",
+    "category": "",
+    "total_subscribers": ""
+  },
+  {
+    "headline": "Dropbox Tech Blog",
+    "author_name": "",
+    "language": "en",
+    "feed_url": "https://dropbox.tech/feed",
+    "category": "Technology",
+    "total_subscribers": ""
+  },
+  {
+    "headline": "EA Forum",
+    "author_name": "",
+    "language": "",
+    "feed_url": "https://forum.effectivealtruism.org/feed.xml",
+    "category": "",
+    "total_subscribers": ""
+  },
+  {
+    "headline": "Econlib",
+    "author_name": "",
+    "language": "en",
+    "feed_url": "https://www.econlib.org/feed/",
+    "category": "Economics",
+    "total_subscribers": ""
+  },
+  {
+    "headline": "El Grand Continent (Spanish)",
+    "author_name": "",
+    "language": "es",
+    "feed_url": "https://legrandcontinent.eu/es/feed/",
+    "category": "World Politics",
+    "total_subscribers": ""
+  },
+  {
+    "headline": "Electrek",
+    "author_name": "",
+    "language": "",
+    "feed_url": "https://electrek.co/feed/",
+    "category": "",
+    "total_subscribers": ""
+  },
+  {
+    "headline": "Electronic Frontier Foundation",
+    "author_name": "",
+    "language": "en",
+    "feed_url": "https://www.eff.org/rss/updates.xml",
+    "category": "Technology",
+    "total_subscribers": ""
+  },
+  {
+    "headline": "Engadget",
+    "author_name": "",
+    "language": "",
+    "feed_url": "https://www.engadget.com/rss.xml",
+    "category": "",
+    "total_subscribers": ""
+  },
+  {
+    "headline": "ESA News",
+    "author_name": "",
+    "language": "",
+    "feed_url": "https://www.esa.int/rssfeed/Our_Activities",
+    "category": "",
+    "total_subscribers": ""
+  },
+  {
+    "headline": "Farnam Street (FS)",
+    "author_name": "",
+    "language": "",
+    "feed_url": "https://fs.blog/feed/",
+    "category": "",
+    "total_subscribers": ""
+  },
+  {
+    "headline": "Federal Reserve – Press Releases",
+    "author_name": "",
+    "language": "en",
+    "feed_url": "https://www.federalreserve.gov/feeds/press_all.xml",
+    "category": "Economics",
+    "total_subscribers": ""
+  },
+  {
+    "headline": "Fedora Magazine",
+    "author_name": "",
+    "language": "en",
+    "feed_url": "https://fedoramagazine.org/feed/",
+    "category": "Technology",
+    "total_subscribers": ""
+  },
+  {
+    "headline": "Feeder News",
+    "author_name": "",
+    "language": "en",
+    "feed_url": "https://news.nononsenseapps.com/index.atom",
+    "category": "Technology",
+    "total_subscribers": ""
+  },
+  {
+    "headline": "freeCodeCamp News",
+    "author_name": "",
+    "language": "en",
+    "feed_url": "https://www.freecodecamp.org/news/rss/",
+    "category": "Technology",
+    "total_subscribers": ""
+  },
+  {
+    "headline": "GitHub Blog",
+    "author_name": "",
+    "language": "",
+    "feed_url": "https://github.blog/feed/",
+    "category": "",
+    "total_subscribers": ""
+  },
+  {
+    "headline": "GitLab Blog",
+    "author_name": "",
+    "language": "",
+    "feed_url": "https://about.gitlab.com/atom.xml",
+    "category": "",
+    "total_subscribers": ""
+  },
+  {
+    "headline": "Global News British Columbia",
+    "author_name": "",
+    "language": "en",
+    "feed_url": "https://globalnews.ca/bc/feed/",
+    "category": "Canadian News",
+    "total_subscribers": ""
+  },
+  {
+    "headline": "Global News Canada",
+    "author_name": "",
+    "language": "en",
+    "feed_url": "https://globalnews.ca/feed/",
+    "category": "Canadian News",
+    "total_subscribers": ""
+  },
+  {
+    "headline": "Go Blog",
+    "author_name": "",
+    "language": "",
+    "feed_url": "https://go.dev/blog/feed.atom",
+    "category": "",
+    "total_subscribers": ""
+  },
+  {
+    "headline": "Google AI Blog",
+    "author_name": "",
+    "language": "en",
+    "feed_url": "https://blog.google/technology/ai/rss/",
+    "category": "Artificial Intelligence",
+    "total_subscribers": ""
+  },
+  {
+    "headline": "Google DeepMind Blog",
+    "author_name": "",
+    "language": "en",
+    "feed_url": "https://deepmind.google/blog/rss.xml",
+    "category": "Artificial Intelligence",
+    "total_subscribers": ""
+  },
+  {
+    "headline": "Google Research Blog",
+    "author_name": "",
+    "language": "en",
+    "feed_url": "https://research.google/blog/rss/",
+    "category": "Artificial Intelligence",
+    "total_subscribers": ""
+  },
+  {
+    "headline": "Hacker News (Front Page)",
+    "author_name": "",
+    "language": "",
+    "feed_url": "https://news.ycombinator.com/rss",
+    "category": "",
+    "total_subscribers": ""
+  },
+  {
+    "headline": "HackerNoon",
+    "author_name": "",
+    "language": "",
+    "feed_url": "https://hackernoon.com/feed",
+    "category": "",
+    "total_subscribers": ""
+  },
+  {
+    "headline": "Hugging Face Blog",
+    "author_name": "",
+    "language": "en",
+    "feed_url": "https://huggingface.co/blog/feed.xml",
+    "category": "Artificial Intelligence",
+    "total_subscribers": ""
+  },
+  {
+    "headline": "Increment by Stripe",
+    "author_name": "",
+    "language": "",
+    "feed_url": "https://increment.com/feed.xml",
+    "category": "",
+    "total_subscribers": ""
+  },
+  {
+    "headline": "It's FOSS",
+    "author_name": "",
+    "language": "en",
+    "feed_url": "https://itsfoss.com/feed/",
+    "category": "Technology",
+    "total_subscribers": ""
+  },
+  {
+    "headline": "James Clear",
+    "author_name": "",
+    "language": "",
+    "feed_url": "https://jamesclear.com/feed",
+    "category": "",
+    "total_subscribers": ""
+  },
+  {
+    "headline": "JetBrains Blog",
+    "author_name": "",
+    "language": "",
+    "feed_url": "https://blog.jetbrains.com/feed/",
+    "category": "",
+    "total_subscribers": ""
+  },
+  {
+    "headline": "Joel on Software",
+    "author_name": "Joel Spolsky",
+    "language": "",
+    "feed_url": "https://www.joelonsoftware.com/feed/",
+    "category": "",
+    "total_subscribers": ""
+  },
+  {
+    "headline": "Kevin Drum",
+    "author_name": "",
+    "language": "",
+    "feed_url": "https://jabberwocking.com/feed/",
+    "category": "",
+    "total_subscribers": ""
+  },
+  {
+    "headline": "Krebs on Security",
+    "author_name": "",
+    "language": "",
+    "feed_url": "https://krebsonsecurity.com/feed/",
+    "category": "",
+    "total_subscribers": ""
+  },
+  {
+    "headline": "Kubernetes Blog",
+    "author_name": "",
+    "language": "",
+    "feed_url": "https://kubernetes.io/feed.xml",
+    "category": "",
+    "total_subscribers": ""
+  },
+  {
+    "headline": "LessWrong (frontpage)",
+    "author_name": "",
+    "language": "",
+    "feed_url": "https://www.lesswrong.com/feed.xml?view=curated-rss",
+    "category": "",
+    "total_subscribers": ""
+  },
+  {
+    "headline": "Linux Kernel Releases",
+    "author_name": "",
+    "language": "en",
+    "feed_url": "https://www.kernel.org/feeds/kdist.xml",
+    "category": "Technology",
+    "total_subscribers": ""
+  },
+  {
+    "headline": "Linux Mint Blog",
+    "author_name": "",
+    "language": "en",
+    "feed_url": "https://blog.linuxmint.com/?feed=rss2",
+    "category": "Technology",
+    "total_subscribers": ""
+  },
+  {
+    "headline": "Lobsters",
+    "author_name": "",
+    "language": "",
+    "feed_url": "https://lobste.rs/rss",
+    "category": "",
+    "total_subscribers": ""
+  },
+  {
+    "headline": "LWN.net",
+    "author_name": "",
+    "language": "en",
+    "feed_url": "https://lwn.net/headlines/rss",
+    "category": "Technology",
+    "total_subscribers": ""
+  },
+  {
+    "headline": "MacRumors",
+    "author_name": "",
+    "language": "en",
+    "feed_url": "https://www.macrumors.com/macrumors.xml",
+    "category": "Technology",
+    "total_subscribers": ""
+  },
+  {
+    "headline": "Marginal Revolution",
+    "author_name": "Tyler Cowen",
+    "language": "",
+    "feed_url": "https://marginalrevolution.com/feed",
+    "category": "",
+    "total_subscribers": ""
+  },
+  {
+    "headline": "Mark Manson",
+    "author_name": "",
+    "language": "",
+    "feed_url": "https://markmanson.net/feed",
+    "category": "",
+    "total_subscribers": ""
+  },
+  {
+    "headline": "Martin Fowler",
+    "author_name": "",
+    "language": "",
+    "feed_url": "https://martinfowler.com/feed.atom",
+    "category": "",
+    "total_subscribers": ""
+  },
+  {
+    "headline": "Meta Engineering Blog",
+    "author_name": "",
+    "language": "en",
+    "feed_url": "https://engineering.fb.com/feed/",
+    "category": "Technology",
+    "total_subscribers": ""
+  },
+  {
+    "headline": "MIT AI News",
+    "author_name": "",
+    "language": "",
+    "feed_url": "https://news.mit.edu/rss/topic/artificial-intelligence2",
+    "category": "",
+    "total_subscribers": ""
+  },
+  {
+    "headline": "Mozilla Blog",
+    "author_name": "",
+    "language": "",
+    "feed_url": "https://blog.mozilla.org/feed/",
+    "category": "",
+    "total_subscribers": ""
+  },
+  {
+    "headline": "Mozilla Hacks",
+    "author_name": "",
+    "language": "en",
+    "feed_url": "https://hacks.mozilla.org/feed/",
+    "category": "Technology",
+    "total_subscribers": ""
+  },
+  {
+    "headline": "Mr. Money Mustache",
+    "author_name": "",
+    "language": "",
+    "feed_url": "https://feeds.feedburner.com/mrmoneymustache",
+    "category": "",
+    "total_subscribers": ""
+  },
+  {
+    "headline": "NASA Breaking News",
+    "author_name": "",
+    "language": "",
+    "feed_url": "https://www.nasa.gov/rss/dyn/breaking_news.rss",
+    "category": "",
+    "total_subscribers": ""
+  },
+  {
+    "headline": "Nautilus",
+    "author_name": "",
+    "language": "en",
+    "feed_url": "https://nautil.us/feed/",
+    "category": "Science",
+    "total_subscribers": ""
+  },
+  {
+    "headline": "Netflix Tech Blog",
+    "author_name": "",
+    "language": "en",
+    "feed_url": "https://netflixtechblog.com/feed",
+    "category": "Technology",
+    "total_subscribers": ""
+  },
+  {
+    "headline": "NextBigFuture",
+    "author_name": "",
+    "language": "",
+    "feed_url": "https://www.nextbigfuture.com/feed",
+    "category": "",
+    "total_subscribers": ""
+  },
+  {
+    "headline": "Nielsen Norman Group",
+    "author_name": "",
+    "language": "en",
+    "feed_url": "https://www.nngroup.com/feed/rss/",
+    "category": "Design",
+    "total_subscribers": ""
+  },
+  {
+    "headline": "Noema Magazine",
+    "author_name": "",
+    "language": "en",
+    "feed_url": "https://www.noemamag.com/feed/",
+    "category": "Ideas",
+    "total_subscribers": ""
+  },
+  {
+    "headline": "NPR News",
+    "author_name": "",
+    "language": "en",
+    "feed_url": "https://feeds.npr.org/1001/rss.xml",
+    "category": "News",
+    "total_subscribers": ""
+  },
+  {
+    "headline": "NVIDIA Blog",
+    "author_name": "",
+    "language": "",
+    "feed_url": "https://blogs.nvidia.com/feed/",
+    "category": "",
+    "total_subscribers": ""
+  },
+  {
+    "headline": "OMG! Ubuntu",
+    "author_name": "",
+    "language": "en",
+    "feed_url": "https://www.omgubuntu.co.uk/feed",
+    "category": "Technology",
+    "total_subscribers": ""
+  },
+  {
+    "headline": "Open Culture",
+    "author_name": "",
+    "language": "",
+    "feed_url": "https://www.openculture.com/feed",
+    "category": "",
+    "total_subscribers": ""
+  },
+  {
+    "headline": "OpenAI News",
+    "author_name": "",
+    "language": "en",
+    "feed_url": "https://openai.com/news/rss.xml",
+    "category": "Artificial Intelligence",
+    "total_subscribers": ""
+  },
+  {
+    "headline": "Opensource.com",
+    "author_name": "",
+    "language": "en",
+    "feed_url": "https://opensource.com/feed",
+    "category": "Technology",
+    "total_subscribers": ""
+  },
+  {
+    "headline": "Our World in Data",
+    "author_name": "",
+    "language": "en",
+    "feed_url": "https://ourworldindata.org/atom.xml",
+    "category": "Science",
+    "total_subscribers": ""
+  },
+  {
+    "headline": "Patrick McKenzie (patio11)",
+    "author_name": "",
+    "language": "",
+    "feed_url": "https://www.kalzumeus.com/feed/",
+    "category": "",
+    "total_subscribers": ""
+  },
+  {
+    "headline": "PC Gamer",
+    "author_name": "",
+    "language": "",
+    "feed_url": "https://www.pcgamer.com/rss/",
+    "category": "",
+    "total_subscribers": ""
+  },
+  {
+    "headline": "Phoronix",
+    "author_name": "",
+    "language": "",
+    "feed_url": "https://www.phoronix.com/rss.php",
+    "category": "Technology",
+    "total_subscribers": ""
+  },
+  {
+    "headline": "Phys.org",
+    "author_name": "",
+    "language": "",
+    "feed_url": "https://phys.org/rss-feed/",
+    "category": "",
+    "total_subscribers": ""
+  },
+  {
+    "headline": "Planet GNOME",
+    "author_name": "",
+    "language": "",
+    "feed_url": "https://planet.gnome.org/rss20.xml",
+    "category": "Technology",
+    "total_subscribers": ""
+  },
+  {
+    "headline": "Planet KDE",
+    "author_name": "",
+    "language": "en",
+    "feed_url": "https://planet.kde.org/rss20.xml",
+    "category": "Technology",
+    "total_subscribers": ""
+  },
+  {
+    "headline": "Planet Money (NPR podcast)",
+    "author_name": "",
+    "language": "",
+    "feed_url": "https://feeds.npr.org/510289/podcast.xml",
+    "category": "",
+    "total_subscribers": ""
+  },
+  {
+    "headline": "Prime Minister of Canada – News",
+    "author_name": "",
+    "language": "en",
+    "feed_url": "https://www.pm.gc.ca/en/news.rss",
+    "category": "Canadian Politics",
+    "total_subscribers": ""
+  },
+  {
+    "headline": "Product Hunt",
+    "author_name": "",
+    "language": "",
+    "feed_url": "https://www.producthunt.com/feed",
+    "category": "",
+    "total_subscribers": ""
+  },
+  {
+    "headline": "ProPublica",
+    "author_name": "",
+    "language": "",
+    "feed_url": "https://www.propublica.org/feeds/propublica/main",
+    "category": "",
+    "total_subscribers": ""
+  },
+  {
+    "headline": "Python (Insider)",
+    "author_name": "",
+    "language": "",
+    "feed_url": "https://blog.python.org/feeds/posts/default",
+    "category": "",
+    "total_subscribers": ""
+  },
+  {
+    "headline": "Quanta Magazine",
+    "author_name": "",
+    "language": "en",
+    "feed_url": "https://www.quantamagazine.org/feed/",
+    "category": "Science",
+    "total_subscribers": ""
+  },
+  {
+    "headline": "Quartz",
+    "author_name": "",
+    "language": "",
+    "feed_url": "https://qz.com/feed",
+    "category": "News",
+    "total_subscribers": ""
+  },
+  {
+    "headline": "Raspberry Pi News",
+    "author_name": "",
+    "language": "en",
+    "feed_url": "https://www.raspberrypi.com/news/feed/",
+    "category": "Technology",
+    "total_subscribers": ""
+  },
+  {
+    "headline": "Real Python",
+    "author_name": "",
+    "language": "en",
+    "feed_url": "https://realpython.com/atom.xml",
+    "category": "Technology",
+    "total_subscribers": ""
+  },
+  {
+    "headline": "Rust Blog",
+    "author_name": "",
+    "language": "",
+    "feed_url": "https://blog.rust-lang.org/feed.xml",
+    "category": "",
+    "total_subscribers": ""
+  },
+  {
+    "headline": "Schneier on Security",
+    "author_name": "",
+    "language": "",
+    "feed_url": "https://www.schneier.com/feed/atom/",
+    "category": "",
+    "total_subscribers": ""
+  },
+  {
+    "headline": "Science News",
+    "author_name": "",
+    "language": "en",
+    "feed_url": "https://www.sciencenews.org/feed",
+    "category": "Science",
+    "total_subscribers": ""
+  },
+  {
+    "headline": "ScienceAlert",
+    "author_name": "",
+    "language": "en",
+    "feed_url": "https://www.sciencealert.com/feed",
+    "category": "Science",
+    "total_subscribers": ""
+  },
+  {
+    "headline": "ScienceDaily – Top Science",
+    "author_name": "",
+    "language": "",
+    "feed_url": "https://www.sciencedaily.com/rss/top/science.xml",
+    "category": "",
+    "total_subscribers": ""
+  },
+  {
+    "headline": "ServeTheHome",
+    "author_name": "",
+    "language": "en",
+    "feed_url": "https://www.servethehome.com/feed/",
+    "category": "Technology",
+    "total_subscribers": ""
+  },
+  {
+    "headline": "Seth Godin",
+    "author_name": "",
+    "language": "",
+    "feed_url": "https://seths.blog/feed",
+    "category": "",
+    "total_subscribers": ""
+  },
+  {
+    "headline": "Slate Star Codex (archive)",
+    "author_name": "",
+    "language": "",
+    "feed_url": "https://slatestarcodex.com/feed/",
+    "category": "",
+    "total_subscribers": ""
+  },
+  {
+    "headline": "Smashing Magazine",
+    "author_name": "",
+    "language": "",
+    "feed_url": "https://www.smashingmagazine.com/feed/",
+    "category": "",
+    "total_subscribers": ""
+  },
+  {
+    "headline": "Space.com",
+    "author_name": "",
+    "language": "en",
+    "feed_url": "https://www.space.com/feeds/all",
+    "category": "Science",
+    "total_subscribers": ""
+  },
+  {
+    "headline": "Stack Overflow Blog",
+    "author_name": "",
+    "language": "",
+    "feed_url": "https://stackoverflow.blog/feed/",
+    "category": "",
+    "total_subscribers": ""
+  },
+  {
+    "headline": "STAT News",
+    "author_name": "",
+    "language": "en",
+    "feed_url": "https://www.statnews.com/feed/",
+    "category": "Health",
+    "total_subscribers": ""
+  },
+  {
+    "headline": "Stephen Wolfram Writings",
+    "author_name": "",
+    "language": "",
+    "feed_url": "https://writings.stephenwolfram.com/feed/",
+    "category": "",
+    "total_subscribers": ""
+  },
+  {
+    "headline": "Stratechery",
+    "author_name": "Ben Thompson",
+    "language": "",
+    "feed_url": "https://stratechery.com/feed/",
+    "category": "",
+    "total_subscribers": ""
+  },
+  {
+    "headline": "Streets.mn",
+    "author_name": "",
+    "language": "en",
+    "feed_url": "https://streets.mn/feed/",
+    "category": "Urbanism",
+    "total_subscribers": ""
+  },
+  {
+    "headline": "Streetsblog USA",
+    "author_name": "",
+    "language": "",
+    "feed_url": "https://usa.streetsblog.org/feed/",
+    "category": "",
+    "total_subscribers": ""
+  },
+  {
+    "headline": "Stripe Blog",
+    "author_name": "",
+    "language": "en",
+    "feed_url": "https://stripe.com/blog/feed.rss",
+    "category": "Technology",
+    "total_subscribers": ""
+  },
+  {
+    "headline": "Strong Towns",
+    "author_name": "",
+    "language": "",
+    "feed_url": "https://www.strongtowns.org/journal?format=rss",
+    "category": "",
+    "total_subscribers": ""
+  },
+  {
+    "headline": "TechCrunch",
+    "author_name": "",
+    "language": "",
+    "feed_url": "https://techcrunch.com/feed/",
+    "category": "",
+    "total_subscribers": ""
+  },
+  {
+    "headline": "TensorFlow Blog",
+    "author_name": "",
+    "language": "",
+    "feed_url": "https://blog.tensorflow.org/feeds/posts/default",
+    "category": "",
+    "total_subscribers": ""
+  },
+  {
+    "headline": "The Atlantic",
+    "author_name": "",
+    "language": "",
+    "feed_url": "https://www.theatlantic.com/feed/all/",
+    "category": "",
+    "total_subscribers": ""
+  },
+  {
+    "headline": "The Buzzer – TransLink",
+    "author_name": "",
+    "language": "en",
+    "feed_url": "https://buzzer.translink.ca/feed/",
+    "category": "Transit",
+    "total_subscribers": ""
+  },
+  {
+    "headline": "The Guardian",
+    "author_name": "",
+    "language": "",
+    "feed_url": "https://www.theguardian.com/world/rss",
+    "category": "",
+    "total_subscribers": ""
+  },
+  {
+    "headline": "The Guardian – Environment",
+    "author_name": "",
+    "language": "en",
+    "feed_url": "https://www.theguardian.com/environment/rss",
+    "category": "Environment",
+    "total_subscribers": ""
+  },
+  {
+    "headline": "The Guardian – Technology",
+    "author_name": "",
+    "language": "en",
+    "feed_url": "https://www.theguardian.com/technology/rss",
+    "category": "Technology",
+    "total_subscribers": ""
+  },
+  {
+    "headline": "The Transport Politic",
+    "author_name": "",
+    "language": "en",
+    "feed_url": "https://www.thetransportpolitic.com/feed/",
+    "category": "Transit",
+    "total_subscribers": ""
+  },
+  {
+    "headline": "The Tyee",
+    "author_name": "",
+    "language": "en",
+    "feed_url": "https://thetyee.ca/rss2.xml",
+    "category": "Canadian News",
+    "total_subscribers": ""
+  },
+  {
+    "headline": "The Urbanist",
+    "author_name": "",
+    "language": "",
+    "feed_url": "https://www.theurbanist.org/feed/",
+    "category": "",
+    "total_subscribers": ""
+  },
+  {
+    "headline": "The Verge",
+    "author_name": "",
+    "language": "",
+    "feed_url": "https://www.theverge.com/rss/index.xml",
+    "category": "",
+    "total_subscribers": ""
+  },
+  {
+    "headline": "Tim Ferriss",
+    "author_name": "",
+    "language": "",
+    "feed_url": "https://tim.blog/feed/",
+    "category": "",
+    "total_subscribers": ""
+  },
+  {
+    "headline": "Tom's Hardware",
+    "author_name": "",
+    "language": "",
+    "feed_url": "https://www.tomshardware.com/feeds/all",
+    "category": "",
+    "total_subscribers": ""
+  },
+  {
+    "headline": "VentureBeat",
+    "author_name": "",
+    "language": "",
+    "feed_url": "https://venturebeat.com/feed/",
+    "category": "",
+    "total_subscribers": ""
+  },
+  {
+    "headline": "VoxEU (CEPR)",
+    "author_name": "",
+    "language": "",
+    "feed_url": "https://cepr.org/rss/vox-content",
+    "category": "World Politics",
+    "total_subscribers": ""
+  },
+  {
+    "headline": "Wait But Why",
+    "author_name": "",
+    "language": "",
+    "feed_url": "https://waitbutwhy.com/feed",
+    "category": "",
+    "total_subscribers": ""
+  },
+  {
+    "headline": "WebKit Blog",
+    "author_name": "",
+    "language": "en",
+    "feed_url": "https://webkit.org/feed/",
+    "category": "Technology",
+    "total_subscribers": ""
+  },
+  {
+    "headline": "WIRED",
+    "author_name": "",
+    "language": "",
+    "feed_url": "https://www.wired.com/feed/rss",
+    "category": "",
+    "total_subscribers": ""
+  },
+  {
+    "headline": "xkcd Comics",
+    "author_name": "Randall Munroe",
+    "language": "",
+    "feed_url": "https://xkcd.com/rss.xml",
+    "category": "Humor",
+    "total_subscribers": ""
+  },
+  {
+    "headline": "Y Combinator Blog",
+    "author_name": "",
+    "language": "",
+    "feed_url": "https://www.ycombinator.com/blog/rss/",
+    "category": "",
+    "total_subscribers": ""
+  }
+]
