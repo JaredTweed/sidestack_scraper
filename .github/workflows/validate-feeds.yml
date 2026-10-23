@@ -1,0 +1,94 @@
+name: Validate feed directory
+
+on:
+  schedule:
+    - cron: "17 4 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: requirements-validation.txt
+
+      - name: Restore validation cache
+        uses: actions/cache@v4
+        with:
+          path: .feed_validation_cache.json
+          key: feed-validation-${{ github.run_id }}
+          restore-keys: |
+            feed-validation-
+
+      - name: Install validator dependencies
+        run: pip install -r requirements-validation.txt
+
+      - name: Validate feeds
+        id: validate
+        continue-on-error: true
+        run: |
+          python validate_other_feeds.py \
+            --input other_feeds_v2.json \
+            --output validation_report.json \
+            --cache .feed_validation_cache.json \
+            --concurrency 32 \
+            --timeout 20 \
+            --retries 2 \
+            --batch-size 100
+
+      - name: Summarise results
+        if: always()
+        run: |
+          python - <<'PY'
+          import json
+          import os
+          import sys
+
+          path = "validation_report.json"
+          if not os.path.exists(path):
+              print("::error::Validator did not produce validation_report.json")
+              sys.exit(1)
+
+          report = json.load(open(path, encoding="utf-8"))
+          summary = report["summary"]
+          lines = [
+              "## Feed validation",
+              "",
+              f"- Checked: **{summary['total']}**",
+              f"- Valid: **{summary['valid']}**",
+              f"- Invalid: **{summary['invalid']}**",
+              f"- Inconclusive (blocked/timeout/rate-limited): **{summary['inconclusive']}**",
+              f"- Fresh cache hits: **{summary['fresh_cache_hits']}**",
+              "",
+              "Inconclusive feeds are not deleted automatically. Review the uploaded report.",
+          ]
+          text = "\n".join(lines)
+          print(text)
+          step_summary = os.environ.get("GITHUB_STEP_SUMMARY")
+          if step_summary:
+              with open(step_summary, "a", encoding="utf-8") as handle:
+                  handle.write(text + "\n")
+          if summary["invalid"]:
+              print("::error::At least one feed is definitively invalid; see validation_report.json")
+              sys.exit(1)
+          PY
+
+      - name: Upload validation report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: feed-validation-report
+          path: validation_report.json
+          if-no-files-found: warn
+          retention-days: 30

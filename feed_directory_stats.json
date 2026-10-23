@@ -1,0 +1,389 @@
+{
+  "candidates_received": 7440,
+  "validated_candidates": 6839,
+  "sources": {
+    "kagi-smallweb": 3301,
+    "ooh.directory": 2255,
+    "tidings-rss": 555,
+    "awesome-rss-feeds": 552,
+    "existing-v2": 146,
+    "existing-v1": 27,
+    "manual-gnome": 3
+  },
+  "duplicates_removed": {
+    "duplicate_content": 48,
+    "duplicate_final_url": 20,
+    "duplicate_url": 8
+  },
+  "failed_candidates": {
+    "invalid:http_404": 243,
+    "inconclusive:timeout": 72,
+    "inconclusive:http_403": 65,
+    "invalid:html_not_feed": 63,
+    "inconclusive:http_429": 41,
+    "inconclusive:network_error": 27,
+    "invalid:dns_error": 21,
+    "invalid:no_usable_entries": 14,
+    "invalid:response_too_large": 9,
+    "invalid:not_rss_or_atom": 7,
+    "invalid:empty_or_tiny_response": 7,
+    "inconclusive:http_500": 5,
+    "inconclusive:http_503": 5,
+    "inconclusive:http_502": 4,
+    "invalid:http_410": 3,
+    "inconclusive:http_error:RemoteProtocolError": 3,
+    "inconclusive:http_522": 2,
+    "invalid:http_405": 2,
+    "invalid:http_409": 1,
+    "inconclusive:http_401": 1,
+    "invalid:http_408": 1,
+    "inconclusive:http_406": 1,
+    "inconclusive:http_567": 1,
+    "substack_duplicate": 1,
+    "invalid:http_418": 1,
+    "inconclusive:http_530": 1
+  },
+  "failure_examples": {
+    "inconclusive:http_403": [
+      {
+        "url": "https://www.statnews.com/feed/",
+        "headline": "STAT News"
+      },
+      {
+        "url": "https://hermitary.com/around/?feed=rss2",
+        "headline": "Hermitary – hermits around the web"
+      },
+      {
+        "url": "https://www.hermitary.com/thatch/?feed=rss2",
+        "headline": "Hermitary – hermit's thatch"
+      }
+    ],
+    "inconclusive:http_429": [
+      {
+        "url": "https://venturebeat.com/feed/",
+        "headline": "VentureBeat"
+      },
+      {
+        "url": "https://quarter--mile.com/rss.xml",
+        "headline": "Quarter Mile"
+      },
+      {
+        "url": "https://www.reddit.com/r/tennis/.rss",
+        "headline": "Tennis News & Discussion"
+      }
+    ],
+    "invalid:no_usable_entries": [
+      {
+        "url": "https://kk.org/feed/",
+        "headline": "Kevin Kelly – The Technium"
+      },
+      {
+        "url": "https://blog.tobiasrevell.com/feed/",
+        "headline": "The Bounding Box – Blog of Tobias Revell"
+      },
+      {
+        "url": "https://shepelavy.com/blog/feed/",
+        "headline": "Dan Shepelavy :: | this, that, and also, etc ::"
+      }
+    ],
+    "inconclusive:http_500": [
+      {
+        "url": "https://avc.com/feed/",
+        "headline": "AVC (Fred Wilson)"
+      },
+      {
+        "url": "https://lookup.london/feed/",
+        "headline": "London History Blog - Blue Badge Guide Look Up London"
+      },
+      {
+        "url": "https://bookriot.com/feed/",
+        "headline": "BOOK RIOT"
+      }
+    ],
+    "invalid:html_not_feed": [
+      {
+        "url": "https://fivethirtyeight.com/feed/",
+        "headline": "FiveThirtyEight"
+      },
+      {
+        "url": "https://anthrodendum.org/feed/",
+        "headline": "anthro{dendum}"
+      },
+      {
+        "url": "https://science.nasa.gov/apod/",
+        "headline": "Astronomy Picture of the Day"
+      }
+    ],
+    "invalid:http_404": [
+      {
+        "url": "https://jfiresearch.org/category/news/feed/",
+        "headline": "Jain Family Institute - News"
+      },
+      {
+        "url": "https://bartlett.pro/feed",
+        "headline": "bartlett.pro"
+      },
+      {
+        "url": "https://blackphoebe.com/msjen/feed/",
+        "headline": "Black Phoebe"
+      }
+    ],
+    "inconclusive:network_error": [
+      {
+        "url": "https://adventureite.com//feed.xml",
+        "headline": "Adventuresite.com"
+      },
+      {
+        "url": "https://purserclub.com/rss.xml",
+        "headline": "Purser Club"
+      },
+      {
+        "url": "https://warandsecurity.com/feed/",
+        "headline": "War and Security"
+      }
+    ],
+    "invalid:dns_error": [
+      {
+        "url": "https://zythophile.co.uk/feed/",
+        "headline": "Zythophile"
+      },
+      {
+        "url": "https://megancarnes.blog/feed/",
+        "headline": "Megan's writings"
+      },
+      {
+        "url": "https://ericwbailey.design/feed/feed.xml",
+        "headline": "Eric Bailey – Writing"
+      }
+    ],
+    "inconclusive:timeout": [
+      {
+        "url": "http://www.idiotking.org/feed/",
+        "headline": "idiot king"
+      },
+      {
+        "url": "https://irongeek.net/buffrss.xml",
+        "headline": "Iron_Geek"
+      },
+      {
+        "url": "https://www.minor9th.com/feed/",
+        "headline": "minor 9th"
+      }
+    ],
+    "invalid:response_too_large": [
+      {
+        "url": "https://swingleydev.com/blog/index.xml",
+        "headline": "metachronistic"
+      },
+      {
+        "url": "https://rss.art19.com/tim-ferriss-show",
+        "headline": "The Tim Ferriss Show"
+      },
+      {
+        "url": "https://feeds.fireside.fm/sdt/rss",
+        "headline": "Software Defined Talk"
+      }
+    ],
+    "invalid:http_409": [
+      {
+        "url": "https://blog.nuclearsecrecy.com/feed/",
+        "headline": "Restricted Data: The Nuclear Secrecy Blog"
+      }
+    ],
+    "inconclusive:http_401": [
+      {
+        "url": "https://brixtonblog.com/feed/",
+        "headline": "Brixton Blog"
+      }
+    ],
+    "inconclusive:http_502": [
+      {
+        "url": "https://blog.geocities.institute/feed",
+        "headline": "One Terabyte of Kilobyte Age"
+      },
+      {
+        "url": "http://feeds.washingtonpost.com/rss/world",
+        "headline": "World"
+      },
+      {
+        "url": "https://blog.12ms.xyz/feed/",
+        "headline": "Ryan‘s World"
+      }
+    ],
+    "inconclusive:http_503": [
+      {
+        "url": "http://www.bradleysalmanac.com/feed",
+        "headline": "Bradley's Almanac"
+      },
+      {
+        "url": "https://westergaard.site/rss/",
+        "headline": "westergaard.site"
+      },
+      {
+        "url": "https://blog.fugue88.ws/feeds/atom.xml",
+        "headline": "blog.fugue88.ws"
+      }
+    ],
+    "invalid:not_rss_or_atom": [
+      {
+        "url": "https://dieworkwear.com/feed/",
+        "headline": "Die, Workwear!"
+      },
+      {
+        "url": "https://www.jugantor.com/feed/rss.xml",
+        "headline": "JUGANTOR"
+      },
+      {
+        "url": "https://nocp.space/rss/feed.json",
+        "headline": "NBlog"
+      }
+    ],
+    "invalid:http_408": [
+      {
+        "url": "http://www.vintagechildrensbooksmykidloves.com/feeds/posts/default",
+        "headline": "Vintage Kids' Books My Kid Loves"
+      }
+    ],
+    "inconclusive:http_406": [
+      {
+        "url": "https://www.elperiodico.com/es/rss/rss_portada.xml",
+        "headline": "El Periódico - portada"
+      }
+    ],
+    "invalid:http_410": [
+      {
+        "url": "http://rss.iol.io/iol/news",
+        "headline": "IOL section feed for News"
+      },
+      {
+        "url": "https://www.financialexpress.com/feed/",
+        "headline": "The Financial Express"
+      },
+      {
+        "url": "https://auzaiffe.wordpress.com/feed/atom/",
+        "headline": "auzaiffe.wordpress.com"
+      }
+    ],
+    "invalid:empty_or_tiny_response": [
+      {
+        "url": "https://manilastandard.net/feed/all",
+        "headline": "Manila Standard"
+      },
+      {
+        "url": "https://www.dailytelegraph.com.au/news/breaking-news/rss",
+        "headline": "Latest News and News Headlines | Daily Telegraph"
+      },
+      {
+        "url": "https://www.heraldsun.com.au/news/breaking-news/rss",
+        "headline": "Latest News and News Headlines | Herald Sun"
+      }
+    ],
+    "inconclusive:http_522": [
+      {
+        "url": "http://tempo.com.ph/feed/",
+        "headline": "Tempo – The Nation's Fastest Growing Newspaper"
+      },
+      {
+        "url": "https://pavluk.org/blog/feed.xml",
+        "headline": "pavluk.org"
+      }
+    ],
+    "invalid:http_405": [
+      {
+        "url": "https://www.sportskeeda.com/feed",
+        "headline": "Sportskeeda"
+      },
+      {
+        "url": "https://www.freebuf.com/feed",
+        "headline": "FreeBuf 网络安全行业门户"
+      }
+    ],
+    "inconclusive:http_567": [
+      {
+        "url": "https://blog.dao.js.cn/atom.xml",
+        "headline": "懋和道人"
+      }
+    ],
+    "inconclusive:http_error:RemoteProtocolError": [
+      {
+        "url": "https://www.rajeshrs.in/feed.xml",
+        "headline": "rajeshrs.in"
+      },
+      {
+        "url": "https://pauginer.com/rss",
+        "headline": "pauginer.com"
+      },
+      {
+        "url": "https://noumenalnotions.space/index.xml",
+        "headline": "noumenalnotions.space"
+      }
+    ],
+    "invalid:http_418": [
+      {
+        "url": "https://www.jwgarber.ca/atom.xml",
+        "headline": "jwgarber.ca"
+      }
+    ],
+    "inconclusive:http_530": [
+      {
+        "url": "https://www.kakeiho.com/feed/",
+        "headline": "kakeiho.com"
+      }
+    ]
+  },
+  "final_feed_count": 6763,
+  "target": 5148,
+  "target_reached": true,
+  "categories": {
+    "Personal Blogs": 3654,
+    "Arts & Culture": 836,
+    "Technology": 732,
+    "Lifestyle": 235,
+    "General": 187,
+    "Science": 182,
+    "International News": 164,
+    "Humanities": 137,
+    "Business & Economics": 116,
+    "News & Politics": 72,
+    "Society": 59,
+    "Podcasts": 58,
+    "UK News": 51,
+    "Programming": 38,
+    "Artificial Intelligence": 38,
+    "Sports": 31,
+    "Linux & Open Source": 26,
+    "Education": 26,
+    "US News": 17,
+    "Climate & Energy": 14,
+    "Food & Drink": 13,
+    "Gaming": 13,
+    "Design": 11,
+    "Canadian News": 11,
+    "Travel": 10,
+    "Security": 10,
+    "History": 7,
+    "International Affairs": 6,
+    "Urbanism & Transport": 5,
+    "Canadian Politics": 4
+  },
+  "languages": {
+    "en": 6176,
+    "zh": 432,
+    "(unknown)": 90,
+    "es": 14,
+    "fr": 10,
+    "pl": 7,
+    "ru": 7,
+    "it": 4,
+    "de": 4,
+    "ja": 3,
+    "pt": 3,
+    "uk": 3,
+    "fa": 3,
+    "bn": 2,
+    "hi": 2,
+    "id": 1,
+    "ur": 1,
+    "gu": 1
+  }
+}

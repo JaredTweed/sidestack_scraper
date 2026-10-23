@@ -1,1 +1,8 @@
 feeds.json
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.feed_validation_cache.json
+candidate_sources/
+candidates/
