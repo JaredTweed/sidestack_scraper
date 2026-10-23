@@ -1,8 +1,8 @@
 {
-  "candidates_received": 7440,
-  "validated_candidates": 6839,
+  "candidates_received": 21940,
+  "validated_candidates": 17333,
   "sources": {
-    "kagi-smallweb": 3301,
+    "kagi-smallweb": 13795,
     "ooh.directory": 2255,
     "tidings-rss": 555,
     "awesome-rss-feeds": 552,
@@ -11,37 +11,42 @@
     "manual-gnome": 3
   },
   "duplicates_removed": {
-    "duplicate_content": 48,
-    "duplicate_final_url": 20,
-    "duplicate_url": 8
+    "duplicate_content": 272,
+    "duplicate_final_url": 26,
+    "duplicate_url": 24
   },
   "failed_candidates": {
-    "invalid:http_404": 243,
-    "inconclusive:timeout": 72,
-    "inconclusive:http_403": 65,
-    "invalid:html_not_feed": 63,
-    "inconclusive:http_429": 41,
-    "inconclusive:network_error": 27,
-    "invalid:dns_error": 21,
-    "invalid:no_usable_entries": 14,
-    "invalid:response_too_large": 9,
-    "invalid:not_rss_or_atom": 7,
+    "inconclusive:timeout": 3515,
+    "invalid:http_404": 361,
+    "inconclusive:network_error": 145,
+    "inconclusive:http_403": 125,
+    "invalid:html_not_feed": 91,
+    "invalid:dns_error": 69,
+    "inconclusive:http_error:RemoteProtocolError": 56,
+    "inconclusive:http_429": 54,
+    "inconclusive:read_error:ReadError": 46,
+    "invalid:not_rss_or_atom": 27,
+    "invalid:no_usable_entries": 23,
+    "inconclusive:http_500": 18,
+    "invalid:response_too_large": 15,
+    "inconclusive:http_502": 11,
+    "inconclusive:http_503": 10,
+    "inconclusive:http_522": 9,
     "invalid:empty_or_tiny_response": 7,
-    "inconclusive:http_500": 5,
-    "inconclusive:http_503": 5,
-    "inconclusive:http_502": 4,
-    "invalid:http_410": 3,
-    "inconclusive:http_error:RemoteProtocolError": 3,
-    "inconclusive:http_522": 2,
+    "invalid:http_410": 5,
+    "inconclusive:http_530": 4,
+    "inconclusive:http_401": 2,
+    "invalid:http_408": 2,
+    "inconclusive:http_406": 2,
     "invalid:http_405": 2,
     "invalid:http_409": 1,
-    "inconclusive:http_401": 1,
-    "invalid:http_408": 1,
-    "inconclusive:http_406": 1,
     "inconclusive:http_567": 1,
     "substack_duplicate": 1,
     "invalid:http_418": 1,
-    "inconclusive:http_530": 1
+    "inconclusive:http_526": 1,
+    "invalid:http_464": 1,
+    "inconclusive:http_533": 1,
+    "inconclusive:http_521": 1
   },
   "failure_examples": {
     "inconclusive:http_403": [
@@ -194,6 +199,10 @@
       {
         "url": "https://brixtonblog.com/feed/",
         "headline": "Brixton Blog"
+      },
+      {
+        "url": "https://blog.xanda.org/feed/",
+        "headline": "blog.xanda.org"
       }
     ],
     "inconclusive:http_502": [
@@ -242,12 +251,20 @@
       {
         "url": "http://www.vintagechildrensbooksmykidloves.com/feeds/posts/default",
         "headline": "Vintage Kids' Books My Kid Loves"
+      },
+      {
+        "url": "https://blog.altos.au/feed.xml",
+        "headline": "blog.altos.au"
       }
     ],
     "inconclusive:http_406": [
       {
         "url": "https://www.elperiodico.com/es/rss/rss_portada.xml",
         "headline": "El Periódico - portada"
+      },
+      {
+        "url": "https://calebhearth.com/atom",
+        "headline": "calebhearth.com"
       }
     ],
     "invalid:http_410": [
@@ -286,6 +303,10 @@
       {
         "url": "https://pavluk.org/blog/feed.xml",
         "headline": "pavluk.org"
+      },
+      {
+        "url": "http://halferty.dev/index.php?format=feed&type=atom",
+        "headline": "halferty.dev"
       }
     ],
     "invalid:http_405": [
@@ -328,14 +349,60 @@
       {
         "url": "https://www.kakeiho.com/feed/",
         "headline": "kakeiho.com"
+      },
+      {
+        "url": "https://bentleyhensel.com/rss/",
+        "headline": "bentleyhensel.com"
+      },
+      {
+        "url": "https://blog.xtexx.eu.org/index.xml",
+        "headline": "blog.xtexx.eu.org"
+      }
+    ],
+    "inconclusive:read_error:ReadError": [
+      {
+        "url": "https://adamwiggins.com/feed.rss",
+        "headline": "adamwiggins.com"
+      },
+      {
+        "url": "https://adamwulf.me/index.xml",
+        "headline": "adamwulf.me"
+      },
+      {
+        "url": "https://adepts.of0x.cc/feed.xml",
+        "headline": "adepts.of0x.cc"
+      }
+    ],
+    "inconclusive:http_526": [
+      {
+        "url": "https://anvtl.com/index.xml",
+        "headline": "anvtl.com"
+      }
+    ],
+    "invalid:http_464": [
+      {
+        "url": "https://connorgurney.me.uk/feed/",
+        "headline": "connorgurney.me.uk"
+      }
+    ],
+    "inconclusive:http_533": [
+      {
+        "url": "https://criticalpages.com/feed/",
+        "headline": "criticalpages.com"
+      }
+    ],
+    "inconclusive:http_521": [
+      {
+        "url": "https://foxprints.org/feed/",
+        "headline": "foxprints.org"
       }
     ]
   },
-  "final_feed_count": 6763,
+  "final_feed_count": 17011,
   "target": 5148,
   "target_reached": true,
   "categories": {
-    "Personal Blogs": 3654,
+    "Personal Blogs": 13871,
     "Arts & Culture": 836,
     "Technology": 732,
     "Lifestyle": 235,
@@ -347,11 +414,11 @@
     "News & Politics": 72,
     "Society": 59,
     "Podcasts": 58,
+    "Linux & Open Source": 57,
     "UK News": 51,
     "Programming": 38,
     "Artificial Intelligence": 38,
     "Sports": 31,
-    "Linux & Open Source": 26,
     "Education": 26,
     "US News": 17,
     "Climate & Energy": 14,
@@ -367,7 +434,7 @@
     "Canadian Politics": 4
   },
   "languages": {
-    "en": 6176,
+    "en": 16424,
     "zh": 432,
     "(unknown)": 90,
     "es": 14,

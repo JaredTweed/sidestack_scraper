@@ -12,7 +12,7 @@ from pathlib import Path
 import httpx
 import pytest
 
-from build_other_feeds_v2 import dedupe_and_filter
+from build_other_feeds_v2 import clean_headline, dedupe_and_filter
 from feed_utils import normalize_language, normalize_url
 from validate_other_feeds import HostRateLimiter, parse_feed_bytes, validate_one
 
@@ -257,3 +257,12 @@ def test_original_file_is_unchanged():
     assert hashlib.sha256(original).hexdigest() == (
         "e8cfea1f3dbbf2e6b910e0701a63c8299c87258bce88617026e040002c1fc275"
     )
+
+def test_clean_headline_strips_formatting_html() -> None:
+    assert clean_headline("<strong>About | Writing</strong> Blog") == "About | Writing Blog"
+    assert clean_headline("Dan’s <s>Tech</s> Blog") == "Dan’s Tech Blog"
+
+
+def test_clean_headline_preserves_literal_angle_brackets() -> None:
+    assert clean_headline("<antirez>") == "<antirez>"
+    assert clean_headline("template<class BoostedCpp>") == "template<class BoostedCpp>"

@@ -109,8 +109,15 @@ def normalize_category(value: str, headline: str, url: str) -> str:
     return value
 
 
+HTML_FORMATTING_TAG = re.compile(
+    r"</?(?:a|b|br|code|del|div|em|i|mark|p|s|small|span|strike|strong|sub|sup|u)(?:\s[^>]*)?>",
+    re.I,
+)
+
+
 def clean_headline(value: str) -> str:
     value = html.unescape(clean_string(value))
+    value = HTML_FORMATTING_TAG.sub("", value)
     value = re.sub(r"\s*::\s*(blog|feed|rss|home|posts?)\s*$", "", value, flags=re.I)
     value = re.sub(r"\s+", " ", value).strip()
     return value[:300]

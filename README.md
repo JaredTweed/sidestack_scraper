@@ -38,7 +38,7 @@ And then it opens all of these links available: `https://sidestack.io/directory/
 ## Non-Substack feeds
 
 `other_feeds_v2.json` is a separately maintained directory of validated
-non-Substack RSS/Atom feeds (currently 6,763 sources). The original
+non-Substack RSS/Atom feeds (currently 17,011 sources). The original
 `other_feeds.json` is left untouched for compatibility. See
 [FEEDS.md](FEEDS.md) for the schema, source attribution, validation method,
 and maintenance commands.
