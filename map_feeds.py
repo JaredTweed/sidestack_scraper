@@ -1,12 +1,23 @@
 #!/usr/bin/env python3
 import json
+import re
 import sys
 from pathlib import Path
-from typing import Any, Dict, List, Optional
+from typing import Any, Dict, List, Optional, Tuple
 
 def read_json(path: Path) -> Any:
     with path.open('r', encoding='utf-8') as f:
         return json.load(f)
+
+def parse_min_subscribers(value: str) -> int:
+    """Parse an exact count or a short form such as 2.5k or 1m."""
+    raw = value.strip().lower().replace(",", "").replace(" ", "")
+    match = re.fullmatch(r"([0-9]*\.?[0-9]+)([kmb]?)", raw)
+    if not match:
+        raise ValueError(value)
+    number = float(match.group(1))
+    multiplier = {"": 1, "k": 1_000, "m": 1_000_000, "b": 1_000_000_000}[match.group(2)]
+    return int(round(number * multiplier))
 
 def to_str(v: Optional[Any]) -> str:
     if v is None:
@@ -42,7 +53,7 @@ def compute_total_subscribers(details: Dict[str, Any]) -> Optional[int]:
             total += int(v)
     return total
 
-def map_item(item: Dict[str, Any]) -> Dict[str, str]:
+def map_item(item: Dict[str, Any]) -> Tuple[Dict[str, str], int]:
     sub = item.get("substack", {}) if isinstance(item.get("substack"), dict) else {}
     details = sub.get("details", {}) if isinstance(sub.get("details"), dict) else {}
     headline = to_str(details.get("headline"))
@@ -88,9 +99,11 @@ def main(argv: List[str]) -> int:
         arg = raw_args[idx]
         if arg == "--min-subscribers":
             try:
-                min_subscribers = int(raw_args[idx + 1])
+                min_subscribers = parse_min_subscribers(raw_args[idx + 1])
             except (IndexError, ValueError):
-                raise SystemExit("Error: --min-subscribers flag requires an integer value.")
+                raise SystemExit(
+                    "Error: --min-subscribers requires a number, optionally suffixed with k, m, or b."
+                )
             idx += 2
         elif arg == "--merge-other-feeds":
             merge_other_feeds = True
